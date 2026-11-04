@@ -1,0 +1,5 @@
+# 行尾统一：Windows 上换行被转成 CRLF 后，bash 会报 $'\r': command not found
+*.sh   text eol=lf
+*.py   text eol=lf
+*.txt  text eol=lf
+*.md   text eol=lf

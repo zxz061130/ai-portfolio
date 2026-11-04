@@ -1,0 +1,73 @@
+import os
+import sys
+from openai import OpenAI
+# ----------------配置----------------
+BASE_URL = "https://api.deepseek.com/v1"
+MODEL = "deepseek-chat"
+LOG_FILE = "chat_log.txt"
+# ------------------------------------
+
+def load_env_file():
+    """Windows手动加载.env环境变量，等价课程weekpath.load_env()"""
+    from dotenv import load_dotenv
+    # 读取当前目录下的.env
+    load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+
+def get_client():
+    key = os.getenv("DEEPSEEK_API_KEY")
+    if not key:
+        return None
+    client = OpenAI(
+        base_url=BASE_URL,
+        api_key=key
+    )
+    return client
+
+def ask_llm(question: str, temperature=0.7, max_tokens=800):
+    client = get_client()
+    resp = client.chat.completions.create(
+        model=MODEL,
+        messages=[{"role":"user","content": question}],
+        temperature=temperature,
+        max_tokens=max_tokens
+    )
+    answer = resp.choices[0].message.content
+    # 获取token计费信息
+    prompt_tokens = resp.usage.prompt_tokens
+    completion_tokens = resp.usage.completion_tokens
+    return answer, prompt_tokens, completion_tokens
+
+def write_log(question, answer, pt, ct):
+    """追加写入对话日志到chat_log.txt"""
+    with open(LOG_FILE,"a",encoding="utf-8") as f:
+        f.write(f"【用户提问】{question}\n")
+        f.write(f"【AI回答】{answer}\n")
+        f.write(f"token：输入{pt}，输出{ct}\n")
+        f.write("-"*60+"\n")
+
+
+if __name__ == "__main__":
+    # 第一步加载.env
+    load_env_file()
+
+    api_key = os.getenv("DEEPSEEK_API_KEY")
+    if not api_key:
+        print("错误：未设置 DEEPSEEK_API_KEY！")
+        print("请确认week04_API文件夹存在.env文件，填写正确密钥")
+        sys.exit(1)
+
+    # 从命令行拿用户的问题，例如 python week4_api_bot.py "你的问题"
+    if len(sys.argv) < 2:
+        print("用法示例：")
+        print(r'python week4_api_bot.py "把字句的教学难点有哪些"')
+        sys.exit(0)
+
+    user_question = sys.argv[1]
+    try:
+        ans, p_tok, c_tok = ask_llm(user_question, temperature=0.7, max_tokens=800)
+        print("\n====AI返回答案====\n")
+        print(ans)
+        write_log(user_question, ans, p_tok, c_tok)
+        print(f"\n✅对话已经保存至 {LOG_FILE}")
+    except Exception as e:
+        print(f"\n❌调用出错：{e}")

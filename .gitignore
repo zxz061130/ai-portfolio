@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+Git/
+# 向量库：二进制中间产物，可随时 python week07_RAG/rag_qa.py --ingest 重建
+chroma_db/
+week*/chroma_db/

@@ -1,0 +1,24 @@
+# 密钥与本地环境：绝不进仓库（讲义第7页“不写进代码 / 不进仓库”）
+.env
+.env.*
+!.env.example
+
+# 本地日志产物：chat_log.txt 是要交的证物，但先在本机确认过再决定是否提交
+# （提交前确认日志里没有被粘贴进去的密钥）
+# chat_log.txt
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 离线自检产生的临时文件
+_selfcheck_tmp/
+_demo_out/
+selfcheck_result.txt
+
+# 编辑器 / 系统垃圾
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
