@@ -1,0 +1,47 @@
+# 仓库与发版证据（由 Git 命令直接生成，未手改）
+
+生成时间：2026-11-09 17:53:29
+仓库路径：D:\ai-portfolio
+
+## 远端
+```
+origin	git@github.com:cxy94/ai-portfolio.git (fetch)
+origin	git@github.com:cxy94/ai-portfolio.git (push)
+zxz	https://github.com/zxz061130/ai-portfolio.git (fetch)
+zxz	https://github.com/zxz061130/ai-portfolio.git (push)
+```
+
+## 最近 6 次提交
+```
+aea5129 feat(W8): 阶段项目一 学科智能问答助手 v1.0（W2 提示词 + W6 双引擎 + W7 知识库）
+5f31fb8 chore: 去掉 .gitattributes 的 BOM（BOM 让 git 把注释行当成属性名，行尾规则一直没生效）
+d4089fa chore: 按 .gitattributes 把 prompt-library 六个模板统一为 LF（renormalize）
+61a7e2c chore: 删掉 main 上误上传的嵌套重复目录（week06_双引擎/week06_双引擎，含一个 .pyc）
+2608695 merge: 把 master 的开发历史并入默认分支 main（W1–W7 全量）
+9e1e9c6 feat(W7): 加一份可截图的完整运行记录（环境+四列原话+耗时），并与运行脚本同源
+```
+
+## 当前状态
+```
+## main...origin/main
+```
+
+## 标签 v1.0
+```
+v1.0            v1.0：学科智能问答助手（W2 提示词 + W6 双引擎 + W7 知识库）
+HEAD        = aea51290cf41c9e70fc927e172bf60b6a5d8ef77
+v1.0^{}     = aea51290cf41c9e70fc927e172bf60b6a5d8ef77
+v1.0 对象类型 = tag（附注标签 annotated tag）
+```
+
+## v1.0 这个提交改了什么
+```
+aea5129 feat(W8): 阶段项目一 学科智能问答助手 v1.0（W2 提示词 + W6 双引擎 + W7 知识库）
+ README.md                            |   7 +
+ week08_assistant_v1/README.md        |  90 +++++++++++
+ week08_assistant_v1/answer_log.md    | 130 +++++++++++++++
+ week08_assistant_v1/assistant_v1.py  | 301 +++++++++++++++++++++++++++++++++++
+ week08_assistant_v1/peer_review.md   |  89 +++++++++++
+ week08_assistant_v1/requirements.txt |  20 +++
+ 6 files changed, 637 insertions(+)
+```

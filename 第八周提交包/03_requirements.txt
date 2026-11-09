@@ -1,0 +1,20 @@
+# W8 阶段项目一：三块积木的最小依赖
+# 装法（Git Bash，仓库根目录）：pip install -r week08_assistant_v1/requirements.txt
+
+# W6 双引擎：云端走 openai 兼容接口，本地走 requests 直连 Ollama
+openai>=1.0
+requests
+
+# .env 读取（Windows 下 os.getenv 读不到 .env，weekpath.load_env() 靠它）
+python-dotenv
+
+# W7 知识库：LangChain + Chroma，嵌入用 Ollama 的 nomic-embed-text
+langchain
+langchain-community
+langchain-chroma
+langchain-ollama
+chromadb
+
+# 可选：模型与嵌入要提前拉到本地（不属于 pip 依赖）
+#   ollama pull qwen2.5:0.5b
+#   ollama pull nomic-embed-text
